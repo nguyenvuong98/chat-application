@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="{Binding Friend}"
+             x:Class="SocketIO.View.ChatPage">
+    <ContentPage.Content>
+        <StackLayout  >
+            <StackLayout HeightRequest="35" BackgroundColor="#ECEFEF" Padding="8,10">
+                <Label Text="{Binding Alert}" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"
+                       FontAttributes="Bold"></Label>
+            </StackLayout>
+            <ScrollView>
+                <StackLayout BindableLayout.ItemsSource="{Binding ChatContentModels}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="8,0">
+                                <Grid Padding="5,0">
+                                    <StackLayout IsVisible="{Binding IsMe}" HorizontalOptions="EndAndExpand" Spacing="8">
+                                        <Label Text="{Binding Username}" HorizontalTextAlignment="End" FontSize="Subtitle"></Label>
+                                        <Frame HasShadow="False" Padding="8,5" BackgroundColor="#1298A7" BorderColor="#1298A7" CornerRadius="5"
+                                           HorizontalOptions="EndAndExpand">
+                                            <Label Text="{Binding Content}" FontSize="Small" TextColor="White"></Label>
+                                        </Frame>
+                                    </StackLayout>
+                                    <StackLayout IsVisible="{Binding IsNotMe}" HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding Username}" FontSize="Subtitle"></Label>
+                                        <Frame HasShadow="False" Padding="8,5" BackgroundColor="#D9DCDC" CornerRadius="5">
+                                            <Label Text="{Binding Content}" FontSize="Small"></Label>
+                                        </Frame>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Padding="5"  Spacing="8" VerticalOptions="EndAndExpand" BackgroundColor="#F5F9FA">
+                <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="70"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Entry Text="{Binding Text}" FontSize="Small" VerticalOptions="Center"
+                           Placeholder="Nội dung"></Entry>
+                    <Frame Padding="0" Grid.Column="1">
+                        <Button Text="OK" BackgroundColor="#30A7C4" Command="{Binding SubmitCommand}" VerticalOptions="Center" 
+                            TextColor="White"></Button>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

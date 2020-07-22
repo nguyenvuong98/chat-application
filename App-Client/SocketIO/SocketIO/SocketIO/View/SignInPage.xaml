@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:btnactivity="clr-namespace:ButtonActivity.Template"
+             mc:Ignorable="d"
+             x:Class="SocketIO.View.SignInPage">
+    <ContentPage.Content>
+        <StackLayout Padding="8,40,8,0"  Spacing="8">
+            <Label Text="LOGIN" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="#1E778D"
+                   CharacterSpacing="3"></Label>
+            <StackLayout Padding="5" VerticalOptions="Center">
+                <Entry Text="{Binding Username}" FontSize="Small" Placeholder="Tên đăng nhập"></Entry>
+                <btnactivity:XButtonActivity IsBusy="{Binding IsBusy}" Text="Login" BGColor="#30A7C4" Color="White"
+                                             Command="{Binding SignInCommand}"></btnactivity:XButtonActivity>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

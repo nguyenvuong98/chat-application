@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"  ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Chat Room"
+             x:Name="root"
+             x:Class="SocketIO.View.HomePage">
+    <ContentPage.Content>
+        <StackLayout Padding="8,10">
+            <StackLayout Padding="5,8" Spacing="8">
+                <Label FontAttributes="Bold" FontSize="Small">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Xin chào: "></Span>
+                            <Span Text="{Binding UserName}"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <BoxView BackgroundColor="#30A7C4" HeightRequest="1"></BoxView>
+            </StackLayout>
+            <Label Text="Danh sách thành viên" FontSize="Small" FontAttributes="Bold"></Label>
+            <ListView ItemsSource="{Binding Users}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                        <ColumnDefinition Width="15"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding UserName}" FontSize="Small" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                    <Label Text="Me" FontSize="Small" FontFamily="Italic" Grid.Column="1"
+                                       VerticalOptions="Center" IsVisible="{Binding IsMe}"></Label>
+                                    <Frame Padding="0" HeightRequest="15" WidthRequest="15" HasShadow="False" CornerRadius="8" VerticalOptions="Center" Grid.Column="2">
+                                        <Frame.Triggers>
+                                            <DataTrigger
+                                            TargetType="Frame"
+                                            Binding="{Binding IsOnline}"
+                                            Value="true">
+                                                <Setter Property="BackgroundColor" Value="#15D173"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger
+                                            TargetType="Frame"
+                                            Binding="{Binding IsOnline}"
+                                            Value="false">
+                                                <Setter Property="BackgroundColor" Value="Gray"></Setter>
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+                                    </Frame>
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.ConnectCommand,Source={Reference root}}"
+                                                          CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

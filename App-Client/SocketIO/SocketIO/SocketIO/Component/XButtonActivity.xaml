@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Padding="0"
+             x:Class="ButtonActivity.Template.XButtonActivity">
+    <Frame x:Name="frame" HeightRequest="50" Padding="0">
+        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" x:Name="stack"  Padding="0" HorizontalOptions="Center">
+            <ActivityIndicator   x:Name="activity"  VerticalOptions="CenterAndExpand" Color="Black">
+                <ActivityIndicator.Scale>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS">1</On>
+                        <On Platform="Android">0.7</On>
+                    </OnPlatform>
+                </ActivityIndicator.Scale>
+            </ActivityIndicator>
+            <Label Text="{Binding Text}" FontAttributes="Bold" x:Name="label" VerticalTextAlignment="Center"></Label>
+        </StackLayout>
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Tapped="btn_Clicked"></TapGestureRecognizer>
+        </Frame.GestureRecognizers>
+    </Frame>
+</StackLayout>
